@@ -1,0 +1,269 @@
+/* General Container */
+.chat-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 25%;
+  min-width: 250px;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--sidebar-bg, #f0f0f0);
+  color: var(--sidebar-text, #000);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.friend-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.friend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.friend-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friend-item .status {
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.friend-item .status.online {
+  color: green;
+}
+
+.friend-item .status.offline {
+  color: red;
+}
+
+.friend-item:hover,
+.friend-item.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Logout Button */
+.logout-button {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #d93636;
+}
+
+/* Theme Toggle Button */
+.toggle-mode-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.toggle-mode-button:hover {
+  background-color: #0056b3;
+}
+
+/* Chat Section */
+.chat-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(--chat-bg, #ffffff);
+  color: var(--chat-text, #000);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.chat-section h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+/* Messages */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.message.sent {
+  flex-direction: row-reverse;
+}
+
+.message-content {
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.message p {
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 100%;
+  word-break: break-word;
+  margin: 0;
+  line-height: 1.5;
+  background-color: var(--message-bg, #f0f0f0);
+  color: var(--message-text, #000);
+}
+
+.message.sent p {
+  background-color: #007bff;
+  color: white;
+}
+
+.message.received p {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 10px;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: gray;
+  opacity: 0;
+  text-align: right;
+  transition: opacity 0.2s ease;
+}
+
+.message-content:hover .timestamp {
+  opacity: 1;
+}
+
+/* Message Input */
+.message-input {
+  display: flex;
+  gap: 10px;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: var(--input-bg, #fff);
+  color: var(--input-text, #000);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.message-input button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.message-input button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .chat-section {
+    padding: 10px;
+  }
+
+  .friend-item img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .message-content {
+    max-width: 90%;
+  }
+}
+
+/* Dark and Light Mode */
+body.light-mode {
+  --sidebar-bg: #f0f0f0;
+  --sidebar-text: #000;
+  --chat-bg: #ffffff;
+  --chat-text: #000;
+  --message-bg: #f0f0f0;
+  --message-text: #000;
+  --input-bg: #ffffff;
+  --input-text: #000;
+}
+
+body.dark-mode {
+  --sidebar-bg: #1e1e1e;
+  --sidebar-text: #fff;
+  --chat-bg: #121212;
+  --chat-text: #fff;
+  --message-bg: #333;
+  --message-text: #fff;
+  --input-bg: #222;
+  --input-text: #fff;
+}
+
+/* Theme Toggle Icon */
+.theme-toggle-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Friends List - Online Status Below Name */
+.friend-item span.status {
+  display: block; /* Show status below name */
+  margin-top: 5px; /* Add some spacing */
+}
+
