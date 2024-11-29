@@ -1,99 +1,111 @@
-# Real-Time Chat Application Backend
+# Real-Time Chat Application Frontend
 
 ## Overview
 
-This backend uses **Strapi**, a powerful open-source headless CMS, to manage user accounts and store chat data. It is hosted on **Render** and serves as the API provider for the frontend of the Real-Time Chat Application.
+This is the frontend of the **Real-Time Chat Application**. It facilitates communication between the user and the server using WebSocket, and provides a responsive user interface where users can send and receive chat messages. It also includes additional features like dark/light mode and session management.
 
 ## Features
 
-- **User Accounts**: Manage user data, including username and email, using Strapi's CMS.
-- **Chat Data Storage**: Stores chat messages and session information.
-- **WebSocket Communication**: Echoes messages sent by the frontend.
-- **PostgreSQL Database**: Ensures efficient and reliable data storage.
+- **User Authentication**: Users can log in using their username and email, with data fetched from the Strapi backend.
+- **Real-Time Messaging**: Messages sent by the user are echoed back by the server using WebSocket communication.
+- **Responsive Design**: The interface is designed to work seamlessly across different screen sizes (mobile, tablet, desktop).
+- **Dark/Light Mode**: Toggle between dark and light themes for better user experience.
+- **Message Time Display**: Hover over a message to see the time it was sent.
 
 ## Requirements
 
-- **Strapi**
+- **React** (v18 or later)
+- **React Router**
+- **Axios** for API calls
+- **WebSocket** for real-time communication
+- **Material-UI** (optional, or any other UI library you choose)
+- **CSS**/**Sass** for styling
 - **Node.js** (v14 or later)
-- **PostgreSQL**
-- **Render Hosting** (or an alternative hosting platform)
-
-## API Endpoints
-
-### Accounts Endpoint
-
-- **GET `/api/accounts`**: Fetches all user accounts.
-  - Used for simple authentication by the frontend.
 
 ## Setup Instructions
 
 ### 1. Clone the Repository
 
-
 git clone <repository-url>
-cd backend
+cd frontend
 
 ### 2. Install Dependencies
 
-After navigating to the project directory, install all required dependencies:
-
-
+Make sure you have Node.js installed, then run the following command to install the necessary dependencies:
 npm install
 
-### 3.Configure Environment Variables
+### 3. Start the Development Server
 
-Create a .env file in the root directory of the project and include the following configurations:
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_NAME=chat_db
-DATABASE_USERNAME=your_db_username
-DATABASE_PASSWORD=your_db_password
-HOST=0.0.0.0
-PORT=1337
+Run the development server using:
+npm start
+This will start the application at http://localhost:3000.
 
-Make sure the values match your PostgreSQL setup and preferred Strapi configuration.
+### 4. Build for Production (Optional)
+To build the project for production:
 
-### 4. Run the PostgreSQL Database
-Ensure that PostgreSQL is installed and running on your machine. If needed, create a database named chat_db (or as specified in your .env file):
+npm run build
+The build will be generated in the build/ folder and is ready to be deployed.
 
-CREATE DATABASE chat_db;
 
-### 5. Start the Backend Server
-To start the development server, run:
+## Application Flow
 
-npm run develop
-This will start the Strapi backend in development mode, allowing you to access the admin panel and manage content.
+**Login**:The user enters their username and email. The frontend sends a request to the Strapi backend to verify the credentials.
+**WebSocket Connection**: After a successful login, the user is connected to the WebSocket server, allowing them to send and receive messages in real time.
+**Chat Interface**: The user interacts with the chat interface to send and receive messages, and the messages are echoed back by the server.
+**Session Management**: The user can maintain their session across page reloads.
 
-The backend will be accessible at: http://localhost:1337
-Strapi admin panel will be accessible at: http://localhost:1337/admin
+## UI Features
+**Dark/Light Mode**: The user can toggle between dark and light mode using a button in the UI. The mode is persisted in the local storage so that the theme is remembered across sessions.
+**Responsive Design**: The chat interface is designed to be fully responsive and works across mobile, tablet, and desktop screens.
 
-### 6. Deploy the Application (Optional)
-To deploy the backend to Render or another hosting service:
+## Testing
+For testing, you can use Jest or React Testing Library. To run tests:
 
-Follow Render's documentation to create a new web service.
-Set up environment variables in Render's dashboard matching the ones in your .env file.
-Deploy the backend by pushing your code to a repository connected to Render.
+npm test
 
-## Testing Instructions
-Test API Endpoints: Use a tool like Postman or cURL to verify the functionality of the backend.
-Test GET /api/accounts to ensure user data is fetched correctly.
-Frontend Integration: Ensure that the frontend can successfully send WebSocket messages and retrieve data via the API.
+## Unit Tests
+You can write unit tests for the components and business logic of the frontend, ensuring that:
 
+**Authentication works as expected.**
+**WebSocket communication is established and maintained.**
+**UI components are rendered correctly.**
 
 ## Troubleshooting
 
-### Common Issues and Fixes
+## Common Issues and Fixes
 
-#### 1. Database Connection Errors
+**WebSocket Not Connecting:**
+***Ensure that the backend is running and the WebSocket URL is correctly set in the .env file.***
+***Verify that no firewalls or proxies are blocking WebSocket connections.***
 
-Verify that PostgreSQL is running
-Ensure that the PostgreSQL service is running on your machine or server. You can check its status using the following command (for Linux/macOS)
+**UI Layout Issues:**
+***Check if the CSS media queries are properly set for different screen sizes.***
+***Test responsiveness using browser developer tools to simulate mobile and tablet views.***
 
-  #### 2. Port Already in Use:
+**Login Failure:**
+***Ensure that the username and email match exactly with the data in the Strapi backend.***
+***Verify that the backend is running and accessible at the configured URL.***
 
-Check if another service is using port 1337 and free it or change the port in the .env file.
+## Deployment
+To deploy the frontend, you can use services like:
 
-#### 3.Deployment Issues:
+**Netlify**
+**Vercel**
+**GitHub Pages**
 
-Double-check environment variables are configured correctly on the hosting platform.
-Ensure the correct PostgreSQL version is used (as per Strapi's requirements).
+### Netlify Deployment Example:
+Push your code to GitHub.
+Connect your GitHub repository to Netlify.
+Select the branch you want to deploy (e.g., main).
+Build and deploy the app.
+Netlify will automatically build and deploy the application every time you push changes to the connected branch.
+
+## Additional Features (Optional)
+Notifications: Add browser notifications when a new message is received.
+Typing Indicator: Show a typing indicator when another user is typing a message.
+Multiple Sessions: Allow users to open multiple chat sessions with the server.
+
+## Acknowledgments
+Strapi for the backend management system.
+WebSocket for real-time communication.
+Material-UI (or any UI library you may have used) for the user interface components.
