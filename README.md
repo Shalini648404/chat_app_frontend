@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# Real-Time Chat Application Backend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This backend uses **Strapi**, a powerful open-source headless CMS, to manage user accounts and store chat data. It is hosted on **Render** and serves as the API provider for the frontend of the Real-Time Chat Application.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **User Accounts**: Manage user data, including username and email, using Strapi's CMS.
+- **Chat Data Storage**: Stores chat messages and session information.
+- **WebSocket Communication**: Echoes messages sent by the frontend.
+- **PostgreSQL Database**: Ensures efficient and reliable data storage.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Strapi**
+- **Node.js** (v14 or later)
+- **PostgreSQL**
+- **Render Hosting** (or an alternative hosting platform)
 
-### `npm test`
+## API Endpoints
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Accounts Endpoint
 
-### `npm run build`
+- **GET `/api/accounts`**: Fetches all user accounts.
+  - Used for simple authentication by the frontend.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup Instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Clone the Repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+git clone <repository-url>
+cd backend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 2. Install Dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+After navigating to the project directory, install all required dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm install
 
-## Learn More
+### 3.Configure Environment Variables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create a .env file in the root directory of the project and include the following configurations:
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=chat_db
+DATABASE_USERNAME=your_db_username
+DATABASE_PASSWORD=your_db_password
+HOST=0.0.0.0
+PORT=1337
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Make sure the values match your PostgreSQL setup and preferred Strapi configuration.
 
-### Code Splitting
+### 4. Run the PostgreSQL Database
+Ensure that PostgreSQL is installed and running on your machine. If needed, create a database named chat_db (or as specified in your .env file):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+CREATE DATABASE chat_db;
 
-### Analyzing the Bundle Size
+### 5. Start the Backend Server
+To start the development server, run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+npm run develop
+This will start the Strapi backend in development mode, allowing you to access the admin panel and manage content.
 
-### Making a Progressive Web App
+The backend will be accessible at: http://localhost:1337
+Strapi admin panel will be accessible at: http://localhost:1337/admin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 6. Deploy the Application (Optional)
+To deploy the backend to Render or another hosting service:
 
-### Advanced Configuration
+Follow Render's documentation to create a new web service.
+Set up environment variables in Render's dashboard matching the ones in your .env file.
+Deploy the backend by pushing your code to a repository connected to Render.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Testing Instructions
+Test API Endpoints: Use a tool like Postman or cURL to verify the functionality of the backend.
+Test GET /api/accounts to ensure user data is fetched correctly.
+Frontend Integration: Ensure that the frontend can successfully send WebSocket messages and retrieve data via the API.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Troubleshooting
 
-### `npm run build` fails to minify
+### Common Issues and Fixes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### 1. Database Connection Errors
+
+Verify that PostgreSQL is running
+Ensure that the PostgreSQL service is running on your machine or server. You can check its status using the following command (for Linux/macOS)
+
+  #### 2. Port Already in Use:
+
+Check if another service is using port 1337 and free it or change the port in the .env file.
+
+#### 3.Deployment Issues:
+
+Double-check environment variables are configured correctly on the hosting platform.
+Ensure the correct PostgreSQL version is used (as per Strapi's requirements).
