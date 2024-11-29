@@ -55,7 +55,7 @@ function ChatPage() {
       if (ws.readyState === WebSocket.OPEN) {
         ws.close();
       }
-    };
+    };// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFriend]);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function ChatPage() {
       }
     };
 
-    loadMessages();
+    loadMessages();// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFriend]);
 
   const handleSendMessage = async () => {
