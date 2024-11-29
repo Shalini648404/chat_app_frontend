@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:1337/api"; // Strapi API base URL
+const API_BASE_URL = "https://chat-app-backend-n87k.onrender.com/api"; // Strapi API base URL
 
 // Sign Up a new user
 export const signUp = async (username, email, password) => {
@@ -32,7 +32,7 @@ export const logIn = async (username, password) => {
 
 export const saveMessage = async (messageData) => {
   try {
-    const response = await fetch("http://localhost:1337/api/messages", {
+    const response = await fetch("https://chat-app-backend-n87k.onrender.com/api/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export const saveMessage = async (messageData) => {
 export const fetchMessages = async (sender, receiver) => {
   try {
     const response = await fetch(
-      `http://localhost:1337/api/messages?filters[$or][0][sender][$eq]=${sender}&filters[$or][0][receiver][$eq]=${receiver}&filters[$or][1][sender][$eq]=${receiver}&filters[$or][1][receiver][$eq]=${sender}`,
+      `https://chat-app-backend-n87k.onrender.com/api/messages?filters[$or][0][sender][$eq]=${sender}&filters[$or][0][receiver][$eq]=${receiver}&filters[$or][1][sender][$eq]=${receiver}&filters[$or][1][receiver][$eq]=${sender}`,
       {
         method: "GET",
       }
@@ -91,7 +91,7 @@ export const fetchMessages = async (sender, receiver) => {
 // Send a new message to the backend
 export const sendMessage = async (messageData) => {
   try {
-    const response = await fetch("http://localhost:1337/api/messages", {
+    const response = await fetch("https://chat-app-backend-n87k.onrender.com/api/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

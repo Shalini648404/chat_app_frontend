@@ -1,18 +1,6 @@
-/*export const connectToWebSocket = (onMessage) => {
-    const ws = new WebSocket("ws://localhost:4000");
-  
-    ws.onmessage = (event) => {
-      onMessage(event.data);
-    };
-  
-    ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
-  
-    return ws;
-  };*/
+
   export const connectToWebSocket = (onMessage) => {
-    const ws = new WebSocket("ws://localhost:4000");
+    const ws = new WebSocket("wss://websockerserver.onrender.com/4000");
   
     // Listen for messages from the server
     ws.onmessage = (event) => {
